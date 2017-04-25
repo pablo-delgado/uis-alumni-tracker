@@ -14,9 +14,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class HomeController {
     
     @RequestMapping(method = RequestMethod.GET)
-    public String homeAction(Model model) {    
+    public String homeView(Model model) {    
         model.addAttribute("welcomeMessage", "Welcome to UIS Alumni Tracker");
         return "home";
+    }
+    
+    
+    @RequestMapping(value = "layout", method = RequestMethod.GET)
+    public String layoutView(Model model) {
+        return "main";
     }
     
 }

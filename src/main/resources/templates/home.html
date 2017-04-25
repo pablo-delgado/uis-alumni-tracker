@@ -1,15 +1,76 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <title>Alumni Tracker - University of Illinois Springfield</title>
-    </head>
-    <body>
-        <div class="container-fluid">
-            <div class="row">
-                <div class="box col-md-6 col-md-offset-3">
-                    <h1 th:inline="text">[[${welcomeMessage}]]!</h1>
+<html lang="en">
+    <head data-th-replace="fragments/common :: head"></head>
+    <body class="app header-fixed sidebar-fixed">
+        <header data-th-replace="fragments/common :: header"></header>
+
+        <div class="app-body">
+            <div class="sidebar" data-th-replace="fragments/common :: sidebar"></div>
+
+            <!-- Main content -->
+            <main class="main">
+                <!-- Breadcrumb -->
+                <ol class="breadcrumb" data-th-replace="fragments/common :: breadcrumb"></ol>
+
+                <div class="container-fluid">
+                    <h1 data-th-inline="text">Summary</h1>
+                    <!--<p data-th-text="${welcomeMessage}"></p>-->
+
+                    <div class="row">
+                        <div class="col-6 col-lg-3">
+                            <div class="card">
+                                <div class="card-block p-1 clearfix">
+                                    <i class="fa fa-graduation-cap bg-primary p-1 font-2xl mr-1 float-left"></i>
+                                    <div class="h5 text-primary mb-0 mt-h">120</div>
+                                    <div class="text-muted text-uppercase font-weight-bold font-xs">Students</div>
+                                </div>
+                                <div class="card-footer p-x-1 py-h">
+                                    <a class="font-weight-bold font-xs btn-block text-muted" href="#">View More <i class="fa fa-angle-right float-right font-lg"></i></a>
+                                </div>
+                            </div>
+                        </div><!--/.col-->
+                        <div class="col-6 col-lg-3">
+                            <div class="card">
+                                <div class="card-block p-1 clearfix">
+                                    <i class="fa fa-black-tie bg-info p-1 font-2xl mr-1 float-left"></i>
+                                    <div class="h5 text-info mb-0 mt-h">1,000</div>
+                                    <div class="text-muted text-uppercase font-weight-bold font-xs">Graduates</div>
+                                </div>
+                                <div class="card-footer p-x-1 py-h">
+                                    <a class="font-weight-bold font-xs btn-block text-muted" href="#">View More <i class="fa fa-angle-right float-right font-lg"></i></a>
+                                </div>
+                            </div>
+                        </div><!--/.col-->
+                        <div class="col-6 col-lg-3">
+                            <div class="card">
+                                <div class="card-block p-1 clearfix">
+                                    <i class="fa fa-briefcase bg-warning p-1 font-2xl mr-1 float-left"></i>
+                                    <div class="h5 text-warning mb-0 mt-h">1,999,50</div>
+                                    <div class="text-muted text-uppercase font-weight-bold font-xs">Employers</div>
+                                </div>
+                                <div class="card-footer p-x-1 py-h">
+                                    <a class="font-weight-bold font-xs btn-block text-muted" href="#">View More <i class="fa fa-angle-right float-right font-lg"></i></a>
+                                </div>
+                            </div>
+                        </div><!--/.col-->
+<!--                        <div class="col-6 col-lg-3">
+                            <div class="card">
+                                <div class="card-block p-1 clearfix">
+                                    <i class="fa fa-bell bg-danger p-1 font-2xl mr-1 float-left"></i>
+                                    <div class="h5 text-danger mb-0 mt-h">$1.999,50</div>
+                                    <div class="text-muted text-uppercase font-weight-bold font-xs">Income</div>
+                                </div>
+                                <div class="card-footer p-x-1 py-h">
+                                    <a class="font-weight-bold font-xs btn-block text-muted" href="#">View More <i class="fa fa-angle-right float-right font-lg"></i></a>
+                                </div>
+                            </div>
+                        </div>-->
+                    </div><!--/.row-->
                 </div>
-            </div>
+            </main>
+
         </div>
+
+        <footer data-th-replace="fragments/common :: footer"></footer>
     </body>
 </html>

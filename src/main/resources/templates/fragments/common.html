@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head data-th-fragment="head">
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="author" content="Pablo Delgado"/>
+
+        <title>Alumni Tracker - University of Illinois Springfield</title>
+
+        <!-- Icons -->
+        <link rel="shortcut icon" href="/favicon/favicon.png" />
+        <link rel="apple-touch-icon" sizes="57x57" href="/favicon/apple-icon-57x57.png"/>
+        <link rel="apple-touch-icon" sizes="60x60" href="/favicon/apple-icon-60x60.png"/>
+        <link rel="apple-touch-icon" sizes="72x72" href="/favicon/apple-icon-72x72.png"/>
+        <link rel="apple-touch-icon" sizes="76x76" href="/favicon/apple-icon-76x76.png"/>
+        <link rel="apple-touch-icon" sizes="114x114" href="/favicon/apple-icon-114x114.png"/>
+        <link rel="apple-touch-icon" sizes="120x120" href="/favicon/apple-icon-120x120.png"/>
+        <link rel="apple-touch-icon" sizes="144x144" href="/favicon/apple-icon-144x144.png"/>
+        <link rel="apple-touch-icon" sizes="152x152" href="/favicon/apple-icon-152x152.png"/>
+        <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-icon-180x180.png"/>
+        <link rel="icon" type="image/png" sizes="192x192"  href="/favicon/android-icon-192x192.png"/>
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png"/>
+        <link rel="icon" type="image/png" sizes="96x96" href="/favicon/favicon-96x96.png"/>
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png"/>
+        <!--<link rel="manifest" href="/manifest.json">-->
+        <meta name="msapplication-TileColor" content="#ffffff" />
+        <meta name="msapplication-TileImage" content="/favicon/ms-icon-144x144.png" />
+        <!--<meta name="theme-color" content="#ffffff">-->
+
+        <link href="/css/font-awesome.min.css" rel="stylesheet"/>
+        <link href="/css/simple-line-icons.css" rel="stylesheet"/>
+
+        <!-- Main styles for this application -->
+        <link href="/css/style.css" rel="stylesheet"/>
+
+        <!-- Plugin css -->
+        <link href="/css/libs/pace.css" rel="stylesheet"/>
+
+        <!-- Bootstrap and necessary plugins -->
+        <script src="/js/libs/jquery.min.js"></script>
+        <script src="/js/libs/tether.min.js"></script>
+        <script src="/js/libs/bootstrap.min.js"></script>
+        <script src="/js/libs/pace.min.js"></script>
+
+        <!-- Main scripts -->
+        <script src="/js/app.js"></script>
+    </head>
+
+    <body>
+        <header class="app-header navbar" data-th-fragment="header">
+            <button class="navbar-toggler mobile-sidebar-toggler d-lg-none" type="button">☰</button>
+            <a class="navbar-brand" href="/"></a>   
+            <ul class="nav navbar-nav d-md-down-none">
+                <li class="nav-item">
+                    <a class="nav-link navbar-toggler sidebar-toggler" href="#">☰</a>
+                </li>
+                <li class="nav-item px-3">
+                    Alumni Tracker
+                </li>                
+            </ul>
+            <ul class="nav navbar-nav ml-auto">
+                <li class="nav-item px-3">
+                    <!--<a class="nav-link" href="/logout" target="_blank">Log Out</a>-->
+                    <a href="/logout" class="btn btn-primary btn-sm">Log Out</a>
+                </li>
+            </ul>
+        </header>
+
+        <div class="app-body">
+            <div class="sidebar" data-th-fragment="sidebar">
+                <nav class="sidebar-nav">
+                    <ul class="nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/"><i class="icon-speedometer"></i> Dashboard <span class="badge badge-info">NEW</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/students"><i class="fa fa-graduation-cap"></i> Students</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/graduates"><i class="fa fa-black-tie"></i> Graduates</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/employers"><i class="fa fa-briefcase"></i> Employers</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
+            <!-- Main content -->
+            <main class="main">
+                <!-- Breadcrumb -->
+                <ol class="breadcrumb" data-th-fragment="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">Tracker</li>
+                </ol>
+                
+                <div class="container-fluid">
+                    
+                </div>
+            </main>
+
+            <aside class="aside-menu">
+                ...
+            </aside>
+
+        </div>
+
+        <footer class="app-footer" data-th-fragment="footer">
+            <span class="text-left">
+                Copyright &copy; 2017 <a href="http://www.uis.edu">University of Illinois Springfield</a>
+            </span>
+            <span class="pull-right">
+                Developed by <a href="https://github.com/pablo-delgado/uis-alumni-tracker">Pablo Delgado</a>
+            </span>
+        </footer>
+
+    </body>
+</html>
