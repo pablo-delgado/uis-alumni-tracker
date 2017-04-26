@@ -21,7 +21,7 @@
                             <div class="card">
                                 <div class="card-block p-1 clearfix">
                                     <i class="fa fa-graduation-cap bg-primary p-1 font-2xl mr-1 float-left"></i>
-                                    <div class="h5 text-primary mb-0 mt-h">120</div>
+                                    <div class="h5 text-primary mb-0 mt-h" data-th-text="${studentAlumniCount}">0</div>
                                     <div class="text-muted text-uppercase font-weight-bold font-xs">Students</div>
                                 </div>
                                 <div class="card-footer p-x-1 py-h">
@@ -33,7 +33,7 @@
                             <div class="card">
                                 <div class="card-block p-1 clearfix">
                                     <i class="fa fa-black-tie bg-info p-1 font-2xl mr-1 float-left"></i>
-                                    <div class="h5 text-info mb-0 mt-h">1,000</div>
+                                    <div class="h5 text-info mb-0 mt-h" data-th-text="${graduatedAlumniCount}">0</div>
                                     <div class="text-muted text-uppercase font-weight-bold font-xs">Graduates</div>
                                 </div>
                                 <div class="card-footer p-x-1 py-h">
@@ -45,7 +45,7 @@
                             <div class="card">
                                 <div class="card-block p-1 clearfix">
                                     <i class="fa fa-briefcase bg-warning p-1 font-2xl mr-1 float-left"></i>
-                                    <div class="h5 text-warning mb-0 mt-h">1,999,50</div>
+                                    <div class="h5 text-warning mb-0 mt-h" data-th-text="${employerCount}">0</div>
                                     <div class="text-muted text-uppercase font-weight-bold font-xs">Employers</div>
                                 </div>
                                 <div class="card-footer p-x-1 py-h">
