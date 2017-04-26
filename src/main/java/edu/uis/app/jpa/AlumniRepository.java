@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
  * @author Pablo Delgado <pdelg2@uis.edu>
  */
 @Repository
-@Transactional
 public interface AlumniRepository extends JpaRepository<Alumni, Long> {
     Alumni findByUin(String uin);
     Alumni findByEmail(String email);
