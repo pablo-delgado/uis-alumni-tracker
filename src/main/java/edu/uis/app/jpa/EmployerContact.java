@@ -28,8 +28,7 @@ public class EmployerContact {
     public EmployerContact() {
     }
 
-    public EmployerContact(Long id, String firstName, String lastName, String role, String phone, String email) {
-        this.id = id;
+    public EmployerContact(String firstName, String lastName, String role, String phone, String email) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.role = role;
