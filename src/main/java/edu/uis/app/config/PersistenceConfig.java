@@ -56,7 +56,7 @@ public class PersistenceConfig {
         LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
         entityManagerFactoryBean.setDataSource(dataSource);
         entityManagerFactoryBean.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
-        entityManagerFactoryBean.setPackagesToScan("net.petrikainulainen.springdata.jpa.todo");
+        entityManagerFactoryBean.setPackagesToScan("edu.uis.app.jpa");
  
         Properties jpaProperties = new Properties();
      
@@ -72,8 +72,8 @@ public class PersistenceConfig {
  
         //Configures the naming strategy that is used when Hibernate creates
         //new database objects and schema elements
-        jpaProperties.put("hibernate.ejb.naming_strategy", 
-                env.getRequiredProperty("hibernate.ejb.naming_strategy")
+        jpaProperties.put("hibernate.implicit_naming_strategy", 
+                env.getRequiredProperty("hibernate.naming_strategy")
         );
  
         //If the value of this property is true, Hibernate writes all SQL
