@@ -13,62 +13,60 @@
                 <ol class="breadcrumb" data-th-replace="fragments/common :: breadcrumb"></ol>
 
                 <div class="container-fluid">
-                    <h1 data-th-inline="text">Dashboard</h1>
-                    <br/>                    
+                    <div class="animated fadeIn">
+                        <div class="card">
+                            <div class="card-block">
 
-                    <div class="row">
-                        <div class="col-6 col-lg-3">
-                            <div class="card">
-                                <div class="card-block p-1 clearfix">
-                                    <i class="fa fa-graduation-cap bg-primary p-1 font-2xl mr-1 float-left"></i>
-                                    <div class="h5 text-primary mb-0 mt-h" data-th-text="${studentAlumniCount}">0</div>
-                                    <div class="text-muted text-uppercase font-weight-bold font-xs">Students</div>
+                                <div data-th-inline="text">
+                                    <div class="card-block p-1 clearfix">
+                                        <i class="fa fa-graduation-cap bg-primary p-1 font-2xl mr-1 float-left"></i>
+                                        <div class="h6 text-primary mb-0 mt-h">Students</div>
+                                        <div class="text-muted text-uppercase font-weight-bold font-xs">Viewing Record for [[${alumni.fullname()}]]</div>
+                                    </div>
+                                </div>    
+                                
+                                <br/>
+                                
+                                <div class="container">
+                                    
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <strong>UIN: </strong><span data-th-text="${alumni.uin}" />
+                                        </div>          
+                                        <div class="col-md-4">
+                                            <strong>Phone: </strong>
+                                            <span data-th-text="${alumni.phone}" />
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <strong>Name: </strong>
+                                            <span data-th-text="${alumni.fullname()}" />
+                                        </div>
+                                        <div class="col-md-4">
+                                            <strong>Email: </strong>
+                                            <span data-th-text="${alumni.email}" />
+                                        </div>
+                                    </div>
+                                    <br/>
+                                    <hr/>
+                                    <div class="row">
+                                        <div class="col-4 pull-right">
+                                            <a href="#" data-th-href="@{/students}" class="btn btn-sm btn-primary"><i class="fa fa-arrow-left"></i> Back</a>
+                                            &nbsp;
+                                            <a href="#" data-th-href="@{/students/{id}/edit(id=${alumni.id})}" class="btn btn-sm btn-secondary"><i class="fa fa-pencil"></i> Edit</a>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="card-footer p-x-1 py-h">
-                                    <a class="font-weight-bold font-xs btn-block text-muted" href="#">View More <i class="fa fa-angle-right float-right font-lg"></i></a>
-                                </div>
+                                
+                                
                             </div>
-                        </div><!--/.col-->
-                        <div class="col-6 col-lg-3">
-                            <div class="card">
-                                <div class="card-block p-1 clearfix">
-                                    <i class="fa fa-black-tie bg-info p-1 font-2xl mr-1 float-left"></i>
-                                    <div class="h5 text-info mb-0 mt-h" data-th-text="${graduatedAlumniCount}">0</div>
-                                    <div class="text-muted text-uppercase font-weight-bold font-xs">Graduates</div>
-                                </div>
-                                <div class="card-footer p-x-1 py-h">
-                                    <a class="font-weight-bold font-xs btn-block text-muted" href="#">View More <i class="fa fa-angle-right float-right font-lg"></i></a>
-                                </div>
-                            </div>
-                        </div><!--/.col-->
-                        <div class="col-6 col-lg-3">
-                            <div class="card">
-                                <div class="card-block p-1 clearfix">
-                                    <i class="fa fa-briefcase bg-warning p-1 font-2xl mr-1 float-left"></i>
-                                    <div class="h5 text-warning mb-0 mt-h" data-th-text="${employerCount}">0</div>
-                                    <div class="text-muted text-uppercase font-weight-bold font-xs">Employers</div>
-                                </div>
-                                <div class="card-footer p-x-1 py-h">
-                                    <a class="font-weight-bold font-xs btn-block text-muted" href="#">View More <i class="fa fa-angle-right float-right font-lg"></i></a>
-                                </div>
-                            </div>
-                        </div><!--/.col-->
-<!--                        <div class="col-6 col-lg-3">
-                            <div class="card">
-                                <div class="card-block p-1 clearfix">
-                                    <i class="fa fa-bell bg-danger p-1 font-2xl mr-1 float-left"></i>
-                                    <div class="h5 text-danger mb-0 mt-h">$1.999,50</div>
-                                    <div class="text-muted text-uppercase font-weight-bold font-xs">Income</div>
-                                </div>
-                                <div class="card-footer p-x-1 py-h">
-                                    <a class="font-weight-bold font-xs btn-block text-muted" href="#">View More <i class="fa fa-angle-right float-right font-lg"></i></a>
-                                </div>
-                            </div>
-                        </div>-->
-                    </div><!--/.row-->
+                        </div>
+                    </div>
                 </div>
-            </main>
 
+            </main>
         </div>
 
         <footer data-th-replace="fragments/common :: footer"></footer>

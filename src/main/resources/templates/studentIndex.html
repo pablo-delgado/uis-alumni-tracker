@@ -44,8 +44,10 @@
                                             </thead>
                                             <tbody>
                                                 <tr data-th-each="alumni : ${alumni}">
-                                                    <th scope="row" data-th-text="${alumni.uin}">UIN</th>
-                                                    <th data-th-text="${alumni.fullname()}">Name</th>
+                                                    <td scope="row">
+                                                        <a href="#" data-th-href="@{/students/{id}/view(id=${alumni.id})}" data-th-text="${alumni.uin}">UIN</a>
+                                                    </td>
+                                                    <td data-th-text="${alumni.fullname()}">Name</td>
                                                     <td data-th-text="${alumni.phone}">Phone</td>
                                                     <td data-th-text="${alumni.email}">Email</td>
                                                     <td data-th-text="${alumni.graduated}? 'YES' : 'NO'">Graduated</td>
@@ -56,6 +58,7 @@
                                                                 Action
                                                             </button>
                                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                                <a class="dropdown-item" href="#" data-th-href="@{/students/{id}/view(id=${alumni.id})}">View</a>
                                                                 <a class="dropdown-item" href="#" data-th-href="@{/students/{id}/edit(id=${alumni.id})}">Edit</a>
                                                                 <a class="dropdown-item" href="#" data-th-href="@{/students/{id}/delete(id=${alumni.id})}">Delete</a>                                                                
                                                             </div>

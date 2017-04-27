@@ -47,7 +47,9 @@ public class StudentController {
         return "studentIndex";
     }
     
-    public String view(Alumni alumni, Model model) {
+    @RequestMapping(value = "/{id}/view")
+    public String view(@PathVariable("id") Alumni alumni, Model model) {
+        model.addAttribute("alumni", alumni);
         return "studentView";
     }
     
