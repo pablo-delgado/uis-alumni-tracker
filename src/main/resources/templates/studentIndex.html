@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head data-th-replace="fragments/common :: head"></head>
+    <body class="app header-fixed sidebar-fixed">
+        <header data-th-replace="fragments/common :: header"></header>
+
+        <div class="app-body">
+            <div class="sidebar" data-th-replace="fragments/common :: sidebar"></div>
+
+            <!-- Main content -->
+            <main class="main">
+                <!-- Breadcrumb -->
+                <ol class="breadcrumb" data-th-replace="fragments/common :: breadcrumb"></ol>
+
+                <div class="container-fluid">
+                    <div class="animated fadeIn">
+                        <div class="card">
+                            <div class="card-block">
+                                
+                                <div class="row">
+                                    <div class="col-11">
+                                        <h3 data-th-inline="text">Students</h3>
+                                    </div>
+                                    <div class="col-1">
+                                        <a href="/students/new" class="btn btn-sm btn-primary pull-right"><i class="fa fa-plus"></i> New Student</a>
+                                    </div>
+                                </div>
+                                
+                                <br/>
+
+                                <div class="row">
+                                    <div class="col-12">
+                                        <table class="table table-hover">
+                                            <thead class="thead-inverse">
+                                                <tr>
+                                                    <th>UIN</th>
+                                                    <th>Name</th>
+                                                    <th>Phone</th>
+                                                    <th>Email</th>
+                                                    <th>Graduated</th>
+                                                    <th>Employed</th>
+                                                    <th></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr data-th-each="alumni : ${alumni}">
+                                                    <th scope="row" data-th-text="${alumni.uin}">UIN</th>
+                                                    <th data-th-text="${alumni.fullname()}">Name</th>
+                                                    <td data-th-text="${alumni.phone}">Phone</td>
+                                                    <td data-th-text="${alumni.email}">Email</td>
+                                                    <td data-th-text="${alumni.graduated}? 'YES' : 'NO'">Graduated</td>
+                                                    <td data-th-text="${alumni.employer}? 'YES' : 'NO'">Graduated</td>
+                                                    <td>
+                                                        <div class="dropdown">
+                                                            <button class="btn btn-sm btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                Action
+                                                            </button>
+                                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                                <a class="dropdown-item" href="#" data-th-href="@{/students/{id}/edit(id=${alumni.id})}">Edit</a>
+                                                                <a class="dropdown-item" href="#" data-th-href="@{/students/{id}/delete(id=${alumni.id})}">Delete</a>                                                                
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>                                                
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </main>
+        </div>
+
+        <footer data-th-replace="fragments/common :: footer"></footer>
+    </body>
+</html>

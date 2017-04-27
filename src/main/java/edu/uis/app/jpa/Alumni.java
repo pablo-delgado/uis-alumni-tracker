@@ -48,7 +48,7 @@ public class Alumni implements Serializable {
     private Boolean graduated;
     
     @Temporal(TemporalType.DATE)
-    @Column(name = "graduation_date")
+    @Column(name = "graduation_date", nullable = true)
     private Date graduationDate;
 
     @OneToOne(cascade = CascadeType.ALL)
@@ -154,6 +154,10 @@ public class Alumni implements Serializable {
     }
     
     // Auxilary methods
+    public String fullname() {
+        return firstName + " " + lastName;
+    }
+    
     public void addNote(AlumniNote note) {
         if(this.notes == null) 
             this.notes = new ArrayList<>();

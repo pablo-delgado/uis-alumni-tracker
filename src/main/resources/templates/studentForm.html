@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head data-th-replace="fragments/common :: head"></head>
+    <body class="app header-fixed sidebar-fixed">
+        <header data-th-replace="fragments/common :: header"></header>
+
+        <div class="app-body">
+            <div class="sidebar" data-th-replace="fragments/common :: sidebar"></div>
+
+            <!-- Main content -->
+            <main class="main">
+                <!-- Breadcrumb -->
+                <ol class="breadcrumb" data-th-replace="fragments/common :: breadcrumb"></ol>
+
+                <div class="container-fluid">
+                    <div class="animated fadeIn">
+                        <div class="card">
+                            <div class="card-block">
+
+                                <div data-th-inline="text">
+                                    <div class="card-block p-1 clearfix">
+                                        <i class="fa fa-graduation-cap bg-primary p-1 font-2xl mr-1 float-left"></i>
+                                        <div class="h6 text-primary mb-0 mt-h">Students</div>
+                                        <div class="text-muted text-uppercase font-weight-bold font-xs">New Record</div>
+                                    </div>
+                                </div>
+                                <br/>                    
+                                
+                                <div class="container">
+                                    <form name="alumni" method="post" data-th-object="${alumni}">
+                                        <input type="hidden" data-th-if="*{id}" data-th-field="*{id}" />
+                                        
+                                        <div class="row">
+                                            <div class="form-group col-md-4">
+                                                <label for="uin" class="col-form-label">UIN</label>
+                                                <input type="text" class="form-control" data-th-field="*{uin}" />
+                                            </div>                                        
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="form-group col-md-6">
+                                                <label for="firstName" class="col-form-label">First Name</label>
+                                                <input type="text" class="form-control" data-th-field="*{firstName}" placeholder="First Name" />
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label for="lastName" class="col-form-label">Last Name</label>
+                                                <input type="text" class="form-control" data-th-field="*{lastName}" placeholder="Last Name" />
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="form-group col-md-6">
+                                                <label for="email" class="col-form-label">Email</label>
+                                                <input type="email" class="form-control" data-th-field="*{email}" placeholder="Email" />
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label for="phone" class="col-form-label">Phone</label>
+                                                <input type="tel" class="form-control" data-th-field="*{phone}" placeholder="Phone" />                                                
+                                            </div>
+                                        </div>
+                                        
+                                        <br/><br/>
+
+                                        <div class="row">
+                                            <div class="form-group col-md-4">
+                                                <label class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input"  data-th-field="*{graduated}" />
+                                                    <span class="custom-control-indicator"></span>
+                                                    <span class="custom-control-description">Student Graduated ?</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="row">
+                                            <div class="form-group col-md-4">
+                                                <label for="graduationDate" class="col-form-label">Graduation Date</label>
+                                                <input type="date" class="form-control"  data-th-field="*{graduationDate}" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" placeholder="" />
+                                                <span data-th-field="*{graduationDate}" data-th-if="${#fields.hasErrors('graduationDate') == true}" >Date Error</span>
+                                            </div>
+                                        </div>
+
+                                        <button type="submit" class="btn btn-primary pull-right">Save</button>
+                                    </form>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </main>
+        </div>
+
+        <footer data-th-replace="fragments/common :: footer"></footer>
+    </body>
+</html>
