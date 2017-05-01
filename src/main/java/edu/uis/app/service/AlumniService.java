@@ -16,7 +16,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class AlumniService {
     private static final Integer PAGE_SIZE = 20;
-
     private AlumniRepository repository;
 
     @Autowired
