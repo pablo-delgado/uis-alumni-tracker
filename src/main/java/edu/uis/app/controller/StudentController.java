@@ -43,33 +43,33 @@ public class StudentController {
     @RequestMapping(method = RequestMethod.GET)
     public String index(Model model, @RequestParam(defaultValue = "0") Integer pageNumber) {
         model.addAttribute("alumni", service.getAlumniPage(pageNumber));
-        return "studentIndex";
+        return "student/index";
     }
     
     @RequestMapping(value = "/{id}/view")
     public String view(@PathVariable("id") Alumni alumni, Model model) {
         model.addAttribute("alumni", alumni);
-        return "studentView";
+        return "student/view";
     }
     
     @RequestMapping(value = "/new", method = RequestMethod.GET)
     public String create(Model model) {
         model.addAttribute("alumni", new Alumni());
-        return "studentForm";
+        return "student/form";
     }
     
     @RequestMapping(value = "/{id}/edit", method = RequestMethod.GET)
     public String edit(@PathVariable("id") Alumni alumni, Model model) {
         if(alumni == null || alumni.getId() == null) return "redirect:/students";
         model.addAttribute("alumni", alumni);
-        return "studentForm";
+        return "student/form";
     }
     
     @RequestMapping(value = {"/new", "/{id}/edit"}, method = RequestMethod.POST)
     public String save(Alumni alumni, BindingResult bindingResult, @ModelAttribute("afterAction") String afterAction, Model model) {
         if(bindingResult.hasErrors()) {
             model.addAttribute("alumni", alumni);
-            return "studentForm";
+            return "student/form";
         }
         
         service.saveAlumni(alumni);
@@ -88,6 +88,6 @@ public class StudentController {
     @RequestMapping(value = "/graduates", method = RequestMethod.GET)
     public String graduates(Model model, @RequestParam(defaultValue = "0") Integer pageNumber) {
         model.addAttribute("alumni", service.getGraduateAlumniPage(pageNumber));
-        return "studentIndex";
+        return "student/index";
     }
 }

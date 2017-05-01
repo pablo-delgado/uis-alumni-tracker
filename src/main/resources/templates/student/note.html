@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head data-th-replace="fragments/common :: head"></head>
+    <body class="app header-fixed sidebar-fixed">
+        <header data-th-replace="fragments/common :: header"></header>
+
+        <div class="app-body">
+            <div class="sidebar" data-th-replace="fragments/common :: sidebar"></div>
+
+            <!-- Main content -->
+            <main class="main">
+                <!-- Breadcrumb -->
+                <ol class="breadcrumb" data-th-replace="fragments/common :: breadcrumb"></ol>
+
+                <div class="container-fluid">
+                    <div class="animated fadeIn">
+                        <div class="card">
+                            <div class="card-block">
+
+                                <div data-th-inline="text">
+                                    <div class="card-block p-1 clearfix">
+                                        <i class="fa fa-graduation-cap bg-primary p-1 font-2xl mr-1 float-left"></i>
+                                        <div class="h6 text-primary mb-0 mt-h">Students</div>
+                                        <div class="text-muted text-uppercase font-weight-bold font-xs">New Record</div>
+                                    </div>
+                                </div>
+                                <br/>                    
+
+                                <!-- Notes -->
+                                <div class="container">
+                                    <form name="note" method="post" data-th-object="${note}">
+                                        <input type="hidden" data-th-if="*{alumni}" data-th-field="*{alumni}" />
+                                        
+                                        <div class="row">
+                                            <div class="form-group col-md-4">
+                                                <label for="uin" class="col-form-label">Note</label>                                                
+                                                <textarea class="form-control" rows="10" data-th-field="*{text}"></textarea>
+                                            </div>                                        
+                                        </div>
+                                        <button type="submit" class="btn btn-primary pull-right">Add Note</button>
+                                    </form>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </main>
+        </div>
+
+        <footer data-th-replace="fragments/common :: footer"></footer>
+    </body>
+</html>
