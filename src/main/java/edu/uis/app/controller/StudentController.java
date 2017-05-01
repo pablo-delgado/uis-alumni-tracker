@@ -13,7 +13,6 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -67,19 +66,28 @@ public class StudentController {
     }
     
     @RequestMapping(value = {"/new", "/{id}/edit"}, method = RequestMethod.POST)
-    public String saveNew(Alumni alumni, BindingResult bindingResult, Model model) {
+    public String save(Alumni alumni, BindingResult bindingResult, @ModelAttribute("afterAction") String afterAction, Model model) {
         if(bindingResult.hasErrors()) {
             model.addAttribute("alumni", alumni);
             return "studentForm";
         }
         
         service.saveAlumni(alumni);
-        return "redirect:/students";
+        if(afterAction.equals("close"))
+            return "redirect:/students";
+        
+        return "redirect:/students/".concat(alumni.getId().toString()).concat("/view");
     }
     
     @RequestMapping(value = "/{id}/delete", method = RequestMethod.GET)
     public String delete(@PathVariable("id") Alumni alumni) {
         service.deleteAlumniWithId(alumni);
         return "redirect:/students";
+    }
+    
+    @RequestMapping(value = "/graduates", method = RequestMethod.GET)
+    public String graduates(Model model, @RequestParam(defaultValue = "0") Integer pageNumber) {
+        model.addAttribute("alumni", service.getGraduateAlumniPage(pageNumber));
+        return "studentIndex";
     }
 }

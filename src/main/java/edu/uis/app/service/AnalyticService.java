@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
- *
  * @author Pablo Delgado
  */
 @Service
@@ -29,7 +28,7 @@ public class AnalyticService {
     }
 
     public Integer studentAlumniCount() {
-        List<Alumni> students = alumniRepository.findByGraduated(Boolean.FALSE);
+        List<Alumni> students = alumniRepository.findByGraduated(Boolean.FALSE);        
         if(students == null) return 0;
         else return students.size();
     }

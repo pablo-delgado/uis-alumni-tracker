@@ -16,6 +16,7 @@ public interface AlumniRepository extends JpaRepository<Alumni, Long> {
     Alumni findByUin(String uin);
     Alumni findByEmail(String email);
     List<Alumni> findByGraduated(Boolean graduated);
+    Page<Alumni> findByGraduated(Boolean graduated, Pageable pageable);
     List<Alumni> findByEmployer(Employer employer);
     List<Alumni> findByEmployerNotNull();
     List<Alumni> findByEmployerIsNull();

@@ -31,6 +31,14 @@ public class AlumniService {
             return new ArrayList<>();
         return result.getContent();
     }
+    
+    public List<Alumni> getGraduateAlumniPage(Integer pageNumber) {
+        PageRequest request = new PageRequest(pageNumber, PAGE_SIZE, Sort.Direction.ASC, "lastName");
+        Page<Alumni> result = repository.findByGraduated(true, request);
+        if(result == null) 
+            return new ArrayList<>();
+        return result.getContent();
+    }
 
     public Boolean saveAlumni(Alumni alumni) {
         alumni = repository.save(alumni);
