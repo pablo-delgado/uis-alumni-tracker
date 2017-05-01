@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head data-th-replace="fragments/common :: head"></head>
+    <body class="app header-fixed sidebar-fixed">
+        <header data-th-replace="fragments/common :: header"></header>
+
+        <div class="app-body">
+            <div class="sidebar" data-th-replace="fragments/common :: sidebar"></div>
+
+            <!-- Main content -->
+            <main class="main">
+                <!-- Breadcrumb -->
+                <ol class="breadcrumb" data-th-replace="fragments/common :: breadcrumb"></ol>
+
+                <div class="container-fluid">
+                    <div class="animated fadeIn">
+                        <div class="card">
+                            <div class="card-block">
+
+                                <div data-th-inline="text">
+                                    <div class="card-block p-1 clearfix">
+                                        <i class="fa fa-graduation-cap bg-primary p-1 font-2xl mr-1 float-left"></i>
+                                        <div class="h6 text-primary mb-0 mt-h">Students</div>
+                                        <div class="text-muted text-uppercase font-weight-bold font-xs">Viewing Record for [[${employer.name}]]</div>
+                                    </div>
+                                </div>    
+                                
+                                <br/>
+                                
+                                <div class="container">
+                                    
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <strong>Name: </strong><span data-th-text="${employer.name}" />
+                                        </div>          
+                                        <div class="col-md-4">
+                                            <strong>City, State </strong>
+                                            <span data-th-text="${employer.city}" />, <span data-th-text="${employer.state}" />
+                                        </div>
+                                    </div>
+
+                                    <br/>
+                                    <hr/>
+                                    <div class="row">
+                                        <div class="col-4 pull-right">
+                                            <a href="#" data-th-href="@{/employers}" class="btn btn-sm btn-primary"><i class="fa fa-arrow-left"></i> Close</a>
+                                            &nbsp;
+                                            <a href="#" data-th-href="@{/employers/{id}/edit(id=${employer.id})}" class="btn btn-sm btn-secondary"><i class="fa fa-pencil"></i> Edit</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </main>
+        </div>
+
+        <footer data-th-replace="fragments/common :: footer"></footer>
+    </body>
+</html>

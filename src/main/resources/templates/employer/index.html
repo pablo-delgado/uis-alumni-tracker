@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head data-th-replace="fragments/common :: head"></head>
+    <body class="app header-fixed sidebar-fixed">
+        <header data-th-replace="fragments/common :: header"></header>
+
+        <div class="app-body">
+            <div class="sidebar" data-th-replace="fragments/common :: sidebar"></div>
+
+            <!-- Main content -->
+            <main class="main">
+                <!-- Breadcrumb -->
+                <ol class="breadcrumb" data-th-replace="fragments/common :: breadcrumb"></ol>
+
+                <div class="container-fluid">
+                    <div class="animated fadeIn">
+                        <div class="card">
+                            <div class="card-block">
+                                
+                                <div class="row">
+                                    <div class="col-11">
+                                        <h3 data-th-inline="text">Employers</h3>
+                                    </div>
+                                    <div class="col-1">
+                                        <a href="/employers/new" class="btn btn-sm btn-primary pull-right"><i class="fa fa-plus"></i> New Employer</a>
+                                    </div>
+                                </div>
+                                
+                                <br/>
+
+                                <div class="row">
+                                    <div class="col-12">
+                                        <table class="table table-hover">
+                                            <thead class="thead-inverse">
+                                                <tr>
+                                                    <th>Name</th>
+                                                    <th>City</th>
+                                                    <th>State</th>
+                                                    <th>Contact Person</th>
+                                                    <!--<th># Graduated Emp.</th>-->
+                                                    <th></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr data-th-each="employer : ${employers}">
+                                                    <td scope="row">
+                                                        <a href="#" data-th-href="@{/employers/{id}/view(id=${employer.id})}" data-th-text="${employer.name}">Name</a>
+                                                    </td>
+                                                    <td data-th-text="${employer.city}">City</td>
+                                                    <td data-th-text="${employer.state}">State</td>
+                                                    <!--<td dat-th-text="{employer.currentContactPerson()}">Email</td>-->
+                                                    <td>
+                                                        <div class="dropdown">
+                                                            <button class="btn btn-sm btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                Action
+                                                            </button>
+                                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                                <a class="dropdown-item" href="#" data-th-href="@{/employers/{id}/view(id=${employer.id})}">View</a>
+                                                                <a class="dropdown-item" href="#" data-th-href="@{/employers/{id}/edit(id=${employer.id})}">Edit</a>
+                                                                <a class="dropdown-item" href="#" data-th-href="@{/employers/{id}/delete(id=${employer.id})}">Delete</a>                                                                
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>                                                
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </main>
+        </div>
+
+        <footer data-th-replace="fragments/common :: footer"></footer>
+    </body>
+</html>
