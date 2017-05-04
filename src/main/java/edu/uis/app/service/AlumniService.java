@@ -1,7 +1,9 @@
 package edu.uis.app.service;
 
 import edu.uis.app.data.model.Alumni;
+import edu.uis.app.data.model.Employer;
 import edu.uis.app.data.repository.AlumniRepository;
+import edu.uis.app.data.repository.EmployerRepository;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,16 +18,22 @@ import org.springframework.stereotype.Service;
 @Service
 public class AlumniService {
     private static final Integer PAGE_SIZE = 20;
-    private AlumniRepository repository;
+    private AlumniRepository alumniRepository;
+    private EmployerRepository employerRepository;
 
     @Autowired
-    public void setRepository(AlumniRepository repository) {
-        this.repository = repository;
+    public void setAlumniRepository(AlumniRepository alumniRepository) {
+        this.alumniRepository = alumniRepository;
+    }
+
+    @Autowired
+    public void setEmployerRepository(EmployerRepository employerRepository) {
+        this.employerRepository = employerRepository;
     }
     
     public List<Alumni> getAlumniPage(Integer pageNumber) {
         PageRequest request = new PageRequest(pageNumber, PAGE_SIZE, Sort.Direction.ASC, "lastName");
-        Page<Alumni> result = repository.findAll(request);
+        Page<Alumni> result = alumniRepository.findAll(request);
         if(result == null) 
             return new ArrayList<>();
         return result.getContent();
@@ -33,19 +41,29 @@ public class AlumniService {
     
     public List<Alumni> getGraduateAlumniPage(Integer pageNumber) {
         PageRequest request = new PageRequest(pageNumber, PAGE_SIZE, Sort.Direction.ASC, "lastName");
-        Page<Alumni> result = repository.findByGraduated(true, request);
+        Page<Alumni> result = alumniRepository.findByGraduated(true, request);
         if(result == null) 
             return new ArrayList<>();
         return result.getContent();
     }
 
     public Boolean saveAlumni(Alumni alumni) {
-        alumni = repository.save(alumni);
+        if(alumni.getEmployed()) {            
+            Employer existingEmployer = employerRepository.findByName(alumni.getEmployer().getName());
+            
+            if(existingEmployer != null) {
+                alumni.setEmployer(existingEmployer);
+            }
+            
+            alumniRepository.save(alumni);
+        }
+        
+        alumni = alumniRepository.save(alumni);
         return true;
     }
 
     public void deleteAlumniWithId(Alumni alumni) {
-        if(alumni != null) repository.delete(alumni);
+        if(alumni != null) alumniRepository.delete(alumni);
     }
         
 }

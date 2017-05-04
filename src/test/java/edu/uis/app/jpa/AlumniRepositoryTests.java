@@ -38,10 +38,10 @@ public class AlumniRepositoryTests {
     
     @Test
     public void equality() {
-        Alumni unsavedStudent = new Alumni("000001", "P1FName", "P1LName", "000-000-0000", "p1@uis.edu", Boolean.FALSE, null, null);
+        Alumni unsavedStudent = new Alumni("000001", "P1FName", "P1LName", "000-000-0000", "p1@uis.edu", Boolean.FALSE, null, Boolean.FALSE, null, null);
         assertThat((repository.findByUin("000001")).equals(unsavedStudent)).isTrue();
         
-        Alumni unsavedGraduate = new Alumni("100002", "2PFName", "2PLName", "000-000-0000", "2p@uis.edu", Boolean.TRUE, new Date(1464753600), null);
+        Alumni unsavedGraduate = new Alumni("100002", "2PFName", "2PLName", "000-000-0000", "2p@uis.edu", Boolean.TRUE, new Date(1464753600), Boolean.FALSE, null, null);
         assertThat((repository.findByUin("100002")).equals(unsavedGraduate)).isTrue();
     }
     
@@ -127,16 +127,16 @@ public class AlumniRepositoryTests {
     @Before
     public void setup() {        
         // Current Students
-        repository.save(new Alumni("000001", "P1FName", "P1LName", "000-000-0000", "p1@uis.edu", Boolean.FALSE, null, null));
-        repository.save(new Alumni("000002", "P2FName", "P2LName", "000-000-0000", "p2@uis.edu", Boolean.FALSE, null, null));
-        repository.save(new Alumni("000003", "P3FName", "P3LName", "000-000-0000", "p3@uis.edu", Boolean.FALSE, null, null));
-        repository.save(new Alumni("000004", "P4FName", "P4LName", "000-000-0000", "p4@uis.edu", Boolean.FALSE, null, new Employer("Company P4", "Springfield", "IL")));
-        repository.save(new Alumni("000005", "P5FName", "P5LName", "000-000-0000", "p5@uis.edu", Boolean.FALSE, null, null));
-        repository.save(new Alumni("000006", "P6FName", "P6LName", "000-000-0000", "p6@uis.edu", Boolean.FALSE, null, new Employer("Company P6", "Miami", "FL")));
+        repository.save(new Alumni("000001", "P1FName", "P1LName", "000-000-0000", "p1@uis.edu", Boolean.FALSE, null, Boolean.FALSE, null, null));
+        repository.save(new Alumni("000002", "P2FName", "P2LName", "000-000-0000", "p2@uis.edu", Boolean.FALSE, null, Boolean.FALSE, null, null));
+        repository.save(new Alumni("000003", "P3FName", "P3LName", "000-000-0000", "p3@uis.edu", Boolean.FALSE, null, Boolean.FALSE, null, null));
+        repository.save(new Alumni("000004", "P4FName", "P4LName", "000-000-0000", "p4@uis.edu", Boolean.FALSE, null, Boolean.TRUE, new Employer("Company P4", "Springfield", "IL"), null));
+        repository.save(new Alumni("000005", "P5FName", "P5LName", "000-000-0000", "p5@uis.edu", Boolean.FALSE, null, Boolean.FALSE, null, null));
+        repository.save(new Alumni("000006", "P6FName", "P6LName", "000-000-0000", "p6@uis.edu", Boolean.FALSE, null, Boolean.TRUE, new Employer("Company P6", "Miami", "FL"), null));
         
         // Graduated Students
-        repository.save(new Alumni("100001", "1PFName", "1PLName", "000-000-0000", "1p@uis.edu", Boolean.TRUE, new Date(1433131200), new Employer("Company 1P", "Springfield", "IL")));
-        repository.save(new Alumni("100002", "2PFName", "2PLName", "000-000-0000", "2p@uis.edu", Boolean.TRUE, new Date(1464753600), null));
+        repository.save(new Alumni("100001", "1PFName", "1PLName", "000-000-0000", "1p@uis.edu", Boolean.TRUE, new Date(1433131200), Boolean.TRUE, new Employer("Company 1P", "Springfield", "IL"), null));
+        repository.save(new Alumni("100002", "2PFName", "2PLName", "000-000-0000", "2p@uis.edu", Boolean.TRUE, new Date(1464753600), Boolean.FALSE, null, null));
     }
     
     @After

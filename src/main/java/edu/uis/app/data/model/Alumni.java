@@ -17,6 +17,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import jdk.nashorn.internal.objects.annotations.Setter;
 
 /**
  *
@@ -51,6 +52,8 @@ public class Alumni implements Serializable {
     @Column(name = "graduation_date", nullable = true)
     private Date graduationDate;
 
+    private Boolean employed;
+    
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "employer")
     private Employer employer;
@@ -62,7 +65,7 @@ public class Alumni implements Serializable {
         this.graduated = Boolean.FALSE;        
     }
 
-    public Alumni(String uin, String firstName, String lastName, String phone, String email, Boolean graduated, Date graduationDate, Employer employer) {
+    public Alumni(String uin, String firstName, String lastName, String phone, String email, Boolean graduated, Date graduationDate, Boolean employed, Employer employer, List<AlumniNote> notes) {
         this.uin = uin;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -70,7 +73,9 @@ public class Alumni implements Serializable {
         this.email = email;
         this.graduated = graduated;
         this.graduationDate = graduationDate;
+        this.employed = employed;
         this.employer = employer;
+        this.notes = notes;
     }
 
     public Long getId() {
@@ -137,6 +142,14 @@ public class Alumni implements Serializable {
         this.graduationDate = graduationDate;
     }
 
+    public Boolean getEmployed() {
+        return employed;
+    }
+
+    public void setEmployed(Boolean employed) {
+        this.employed = employed;
+    }
+
     public Employer getEmployer() {
         return employer;
     }
@@ -152,7 +165,7 @@ public class Alumni implements Serializable {
     public void setNotes(List<AlumniNote> notes) {
         this.notes = notes;
     }
-    
+
     // Auxilary methods
     public String fullname() {
         return firstName + " " + lastName;

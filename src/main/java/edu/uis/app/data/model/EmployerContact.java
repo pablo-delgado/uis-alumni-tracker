@@ -1,5 +1,6 @@
 package edu.uis.app.data.model;
 
+import java.io.Serializable;
 import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,7 +14,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "uis_employer_contact")
-public class EmployerContact {
+public class EmployerContact implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

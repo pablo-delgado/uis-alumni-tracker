@@ -1,6 +1,7 @@
 package edu.uis.app.controller;
 
 import edu.uis.app.data.model.Alumni;
+import edu.uis.app.data.model.Employer;
 import edu.uis.app.service.AlumniService;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -66,13 +67,14 @@ public class StudentController {
     }
     
     @RequestMapping(value = {"/new", "/{id}/edit"}, method = RequestMethod.POST)
-    public String save(Alumni alumni, BindingResult bindingResult, @ModelAttribute("afterAction") String afterAction, Model model) {
+    public String save(Alumni alumni, BindingResult bindingResult, Employer employer, @ModelAttribute("afterAction") String afterAction, Model model) throws Exception {
         if(bindingResult.hasErrors()) {
             model.addAttribute("alumni", alumni);
             return "student/form";
         }
         
         service.saveAlumni(alumni);
+        
         if(afterAction.equals("close"))
             return "redirect:/students";
         

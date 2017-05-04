@@ -87,8 +87,8 @@ public class EmployerRepositoryTests {
         List<Alumni> alumni = alumniRepository.findAll();
         if(alumni == null || alumni.size() == 0) {
             Date employmentDate = new Date(1433131200);
-            alumniRepository.save(new Alumni("100001", "1PFName", "1PLName", "000-000-0000", "1p@uis.edu", Boolean.TRUE, employmentDate, employer));
-            alumniRepository.save(new Alumni("100002", "2PFName", "2PLName", "000-000-0000", "2p@uis.edu", Boolean.TRUE, employmentDate, employer));
+            alumniRepository.save(new Alumni("100001", "1PFName", "1PLName", "000-000-0000", "1p@uis.edu", Boolean.TRUE, employmentDate, Boolean.TRUE, employer, null));
+            alumniRepository.save(new Alumni("100002", "2PFName", "2PLName", "000-000-0000", "2p@uis.edu", Boolean.TRUE, employmentDate, Boolean.TRUE, employer, null));
             
             alumni = alumniRepository.findAll();
         }
