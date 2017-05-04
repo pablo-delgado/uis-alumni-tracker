@@ -1,5 +1,6 @@
-package edu.uis.app.jpa;
+package edu.uis.app.data.repository;
 
+import edu.uis.app.data.model.Employer;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

@@ -1,9 +1,9 @@
 package edu.uis.app.service;
 
-import edu.uis.app.jpa.Alumni;
-import edu.uis.app.jpa.AlumniRepository;
-import edu.uis.app.jpa.Employer;
-import edu.uis.app.jpa.EmployerRepository;
+import edu.uis.app.data.model.Alumni;
+import edu.uis.app.data.repository.AlumniRepository;
+import edu.uis.app.data.model.Employer;
+import edu.uis.app.data.repository.EmployerRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

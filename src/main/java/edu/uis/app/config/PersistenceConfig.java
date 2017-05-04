@@ -1,6 +1,5 @@
 package edu.uis.app.config;
 
-import java.lang.reflect.Constructor;
 import java.util.Properties;
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
@@ -19,7 +18,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  */
 @Configuration
 @EnableJpaRepositories(basePackages = {
-        "edu.uis.app.jpa"
+        "edu.uis.app.data"
 })
 @EnableTransactionManagement
 public class PersistenceConfig {
@@ -56,7 +55,7 @@ public class PersistenceConfig {
         LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
         entityManagerFactoryBean.setDataSource(dataSource);
         entityManagerFactoryBean.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
-        entityManagerFactoryBean.setPackagesToScan("edu.uis.app.jpa");
+        entityManagerFactoryBean.setPackagesToScan("edu.uis.app.data");
  
         Properties jpaProperties = new Properties();
      

@@ -1,4 +1,4 @@
-package edu.uis.app.jpa;
+package edu.uis.app.data.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;

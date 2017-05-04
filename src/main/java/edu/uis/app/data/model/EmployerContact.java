@@ -1,4 +1,4 @@
-package edu.uis.app.jpa;
+package edu.uis.app.data.model;
 
 import java.util.Objects;
 import javax.persistence.Entity;

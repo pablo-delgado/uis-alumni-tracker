@@ -4,6 +4,10 @@ package edu.uis.app.jpa;
  *
  * @author Pablo Delgado
  */
+import edu.uis.app.data.model.AlumniNote;
+import edu.uis.app.data.repository.AlumniRepository;
+import edu.uis.app.data.model.Employer;
+import edu.uis.app.data.model.Alumni;
 import java.util.Date;
 import java.util.List;
 import org.junit.*;

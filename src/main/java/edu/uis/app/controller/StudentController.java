@@ -1,6 +1,6 @@
 package edu.uis.app.controller;
 
-import edu.uis.app.jpa.Alumni;
+import edu.uis.app.data.model.Alumni;
 import edu.uis.app.service.AlumniService;
 import java.text.SimpleDateFormat;
 import java.util.Date;

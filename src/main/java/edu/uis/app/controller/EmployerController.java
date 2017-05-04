@@ -1,7 +1,7 @@
 package edu.uis.app.controller;
 
-import edu.uis.app.jpa.Alumni;
-import edu.uis.app.jpa.Employer;
+import edu.uis.app.data.model.Alumni;
+import edu.uis.app.data.model.Employer;
 import edu.uis.app.service.EmployerService;
 import java.text.SimpleDateFormat;
 import java.util.Date;

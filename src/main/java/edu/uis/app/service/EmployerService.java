@@ -1,7 +1,7 @@
 package edu.uis.app.service;
 
-import edu.uis.app.jpa.Employer;
-import edu.uis.app.jpa.EmployerRepository;
+import edu.uis.app.data.model.Employer;
+import edu.uis.app.data.repository.EmployerRepository;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,5 +1,10 @@
 package edu.uis.app.jpa;
 
+import edu.uis.app.data.repository.AlumniRepository;
+import edu.uis.app.data.model.Employer;
+import edu.uis.app.data.model.Alumni;
+import edu.uis.app.data.model.EmployerContact;
+import edu.uis.app.data.repository.EmployerRepository;
 import java.util.Date;
 import java.util.List;
 import org.junit.*;

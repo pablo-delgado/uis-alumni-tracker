@@ -1,7 +1,7 @@
 package edu.uis.app.service;
 
-import edu.uis.app.jpa.Alumni;
-import edu.uis.app.jpa.AlumniRepository;
+import edu.uis.app.data.model.Alumni;
+import edu.uis.app.data.repository.AlumniRepository;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
