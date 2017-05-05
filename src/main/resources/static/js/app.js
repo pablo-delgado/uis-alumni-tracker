@@ -105,6 +105,8 @@ $(document).ready(function($){
   $('a[href="#"][data-top!=true]').click(function(e){
     e.preventDefault();
   });
+  
+  $('select').select2();
 
 });
 

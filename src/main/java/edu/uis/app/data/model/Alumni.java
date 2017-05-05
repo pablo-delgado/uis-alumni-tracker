@@ -52,13 +52,13 @@ public class Alumni implements Serializable {
     private Date graduationDate;
 
     private Boolean employed;
+    private Boolean contact;
     
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "employer")
     private Employer employer;
     
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "alumni")
-//    @OneToMany(cascade = CascadeType.ALL)
     private List<AlumniNote> notes;
 
     public Alumni() {
@@ -148,6 +148,14 @@ public class Alumni implements Serializable {
 
     public void setEmployed(Boolean employed) {
         this.employed = employed;
+    }
+
+    public Boolean getContact() {
+        return contact;
+    }
+
+    public void setContact(Boolean contact) {
+        this.contact = contact;
     }
 
     public Employer getEmployer() {

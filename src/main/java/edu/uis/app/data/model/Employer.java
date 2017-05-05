@@ -1,8 +1,6 @@
 package edu.uis.app.data.model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -10,15 +8,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import javax.persistence.OrderBy;
 import javax.persistence.Table;
 
 /**
  *
- * @author Pablo Delgado <pdelg2@uis.edu>
+ * @author Pablo Delgado
  */
 @Entity
 @Table(name = "uis_employer")
@@ -38,9 +33,6 @@ public class Employer implements Serializable {
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     private EmployerContact contactPerson;
     
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "employer")
-    private List<Alumni> employees;
-
     public Employer() {
     }
 
@@ -99,26 +91,6 @@ public class Employer implements Serializable {
 
     public void setContactPerson(EmployerContact contactPerson) {
         this.contactPerson = contactPerson;
-    }
-
-    public List<Alumni> getEmployees() {
-        return employees;
-    }
-
-    public void setEmployees(List<Alumni> employees) {
-        this.employees = employees;
-    }
-    
-    public void addEmployee(Alumni employee) {
-        if(this.employees == null)
-            this.employees = new ArrayList<>();
-        
-        this.employees.add(employee);
-    }
-    
-    public void removeEmployee(Alumni employee) {
-        if(this.employees != null)
-            this.employees.remove(employee);
     }
 
     @Override

@@ -25,11 +25,11 @@
                                     </div>
                                 </div>
                                 <br/>                    
-                                
+
                                 <div class="container">
                                     <form name="alumni" method="post" data-th-object="${alumni}">
                                         <input type="hidden" data-th-if="*{id}" data-th-field="*{id}" />
-                                        
+
                                         <div class="row">
                                             <div class="form-group col-md-4">
                                                 <label for="uin" class="col-form-label">UIN</label>
@@ -58,7 +58,7 @@
                                                 <input type="tel" class="form-control" data-th-field="*{phone}" placeholder="Phone" />                                                
                                             </div>
                                         </div>
-                                        
+
                                         <br/><br/>
 
                                         <div class="row">
@@ -70,7 +70,7 @@
                                                 </label>
                                             </div>
                                         </div>
-                                        
+
                                         <div class="row">                                            
                                             <div class="form-group col-md-4">                                                
                                                 <label for="graduationDate" class="col-form-label">Graduation Date</label>
@@ -78,12 +78,12 @@
                                                 <span data-th-field="*{graduationDate}" data-th-if="${#fields.hasErrors('graduationDate') == true}" >Date Error</span>
                                             </div>
                                         </div>
-                                        
+
                                         <!-- Employer Data -->
                                         <br />
                                         <hr />
                                         <div class="row">
-                                            <div class="form-group col-md-4">
+                                            <div class="form-group col-md-6">
                                                 <label class="custom-control custom-checkbox">
                                                     <input type="checkbox" class="custom-control-input"  data-th-field="*{employed}" />
                                                     <span class="custom-control-indicator"></span>
@@ -91,31 +91,35 @@
                                                 </label>
                                             </div>
                                         </div>
-                                        
+
                                         <div class="row">
-                                            <div class="form-group col-md-12">
-                                                <label for="name" class="col-form-label">Name</label>
-                                                <input type="text" class="form-control" data-th-field="*{employer.name}" />
-                                            </div>                                        
+                                            <!-- Company Name -->
+                                            <div class="form-group col-md-5">
+                                                <label for="employer.name" class="col-form-label">Name</label>
+                                                <input type="text" class="form-control employer-search-input" data-th-field="*{employer.name}" />
+                                            </div>   
                                         </div>
 
                                         <div class="row">
                                             <div class="form-group col-md-4">
-                                                <label for="city" class="col-form-label">City</label>
+                                                <label for="employer.city" class="col-form-label">City</label>
                                                 <input type="text" class="form-control" data-th-field="*{employer.city}" placeholder="City" />
                                             </div>
-                                            <div class="form-group col-md-2">
-                                                <label for="state" class="col-form-label">State</label>
-                                                <input type="text" class="form-control" data-th-field="*{employer.state}" placeholder="e.g. IL" maxlength="2" />
+
+                                            <div class="form-group col-md-1">
+                                                <label for="employer.state" class="col-form-label">State</label>
+                                                <input type="text" class="form-control" data-th-field="*{employer.state}" placeholder="" maxlength="2" />
                                             </div>
                                         </div>
 
+
+                                        <br/>
                                         <a href="#" data-th-href="@{/students}" class="btn btn-secondary pull-right m-l" style="margin-left: 10px;">Close</a>
                                         <button type="submit" name="afterAction" value="close" class="btn btn-primary pull-right" style="margin-left: 10px;">Save and Close</button>
                                         <button type="submit" name="afterAction" value="continue" class="btn btn-primary pull-right">Save</button>
                                     </form>
                                 </div>
-                                
+
                             </div>
                         </div>
                     </div>
@@ -125,5 +129,7 @@
         </div>
 
         <footer data-th-replace="fragments/common :: footer"></footer>
+
+        <script src="/js/employer.suggestion.js"></script>
     </body>
 </html>

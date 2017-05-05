@@ -65,13 +65,7 @@ public class EmployerRepositoryTests {
         assertThat(contact.getEmail()).isEqualTo("cp2@emp4.com");
         assertThat(contact.getRole()).isEqualTo("Human Resource");
     }
-    
-    @Test
-    public void getAlumni() {
-        List<Alumni> alumni = repository.findByName("Emp 4").getEmployees();
-        assertThat(alumni.size()).isEqualTo(2);        
-    }
-    
+        
     @Before
     public void setup() {       
         
@@ -93,7 +87,7 @@ public class EmployerRepositoryTests {
             alumni = alumniRepository.findAll();
         }
         
-        employer.setEmployees(alumni);
+//        employer.setEmployees(alumni);
         repository.save(employer);
     }
     

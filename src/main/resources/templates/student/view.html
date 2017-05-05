@@ -77,7 +77,7 @@
 
                                         </div>
                                         <div class="col-md-4">
-                                            <span data-th-text="${alumni.employer.name}" /><br/>
+                                            <a href="#" data-th-href="@{/employers/{id}/view(id=${alumni.employer.id})}" data-th-text="${alumni.employer.name}">Employer</a><br/>                                            
                                             <span data-th-text="${alumni.employer.city}" />, <span data-th-text="${alumni.employer.state}" />
                                         </div>
                                     </div>

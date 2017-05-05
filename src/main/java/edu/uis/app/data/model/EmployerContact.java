@@ -2,6 +2,7 @@ package edu.uis.app.data.model;
 
 import java.io.Serializable;
 import java.util.Objects;
+import javax.persistence.Embeddable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,7 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
- *
  * @author Pablo Delgado
  */
 @Entity
@@ -84,11 +84,24 @@ public class EmployerContact implements Serializable {
     public void setEmail(String email) {
         this.email = email;
     }
+    
+    public Boolean isComplete() {
+        return (this.firstName != null  && this.firstName.isEmpty() == false && 
+                this.lastName != null && this.lastName.isEmpty() == false &&
+                this.role != null && this.role.isEmpty() == false &&
+                this.phone != null && this.phone.isEmpty() == false &&
+                this.email != null && this.email.isEmpty() == false);
+    }
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 79 * hash + Objects.hashCode(this.id);
+        int hash = 3;
+        hash = 37 * hash + Objects.hashCode(this.id);
+        hash = 37 * hash + Objects.hashCode(this.firstName);
+        hash = 37 * hash + Objects.hashCode(this.lastName);
+        hash = 37 * hash + Objects.hashCode(this.role);
+        hash = 37 * hash + Objects.hashCode(this.phone);
+        hash = 37 * hash + Objects.hashCode(this.email);
         return hash;
     }
 
@@ -104,12 +117,27 @@ public class EmployerContact implements Serializable {
             return false;
         }
         final EmployerContact other = (EmployerContact) obj;
+        if (!Objects.equals(this.firstName, other.firstName)) {
+            return false;
+        }
+        if (!Objects.equals(this.lastName, other.lastName)) {
+            return false;
+        }
+        if (!Objects.equals(this.role, other.role)) {
+            return false;
+        }
+        if (!Objects.equals(this.phone, other.phone)) {
+            return false;
+        }
+        if (!Objects.equals(this.email, other.email)) {
+            return false;
+        }
         if (!Objects.equals(this.id, other.id)) {
             return false;
         }
         return true;
     }
-
+   
     @Override
     public String toString() {
         return "EmployerContact{" + "firstName=" + firstName + ", lastName=" + lastName + ", role=" + role + ", phone=" + phone + ", email=" + email + '}';

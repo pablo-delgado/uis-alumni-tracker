@@ -3,6 +3,7 @@ package edu.uis.app.service;
 import edu.uis.app.data.model.Alumni;
 import edu.uis.app.data.model.AlumniNote;
 import edu.uis.app.data.model.Employer;
+import edu.uis.app.data.model.EmployerContact;
 import edu.uis.app.data.repository.AlumniNoteRepository;
 import edu.uis.app.data.repository.AlumniRepository;
 import edu.uis.app.data.repository.EmployerRepository;
@@ -23,6 +24,7 @@ public class AlumniService {
     private AlumniRepository alumniRepository;
     private AlumniNoteRepository alumniNoteRepository;
     private EmployerRepository employerRepository;
+//    private EmployerContactRepository employerContactRepository;
 
     @Autowired
     public void setAlumniRepository(AlumniRepository alumniRepository) {
@@ -38,6 +40,11 @@ public class AlumniService {
     public void setAlumniNoteRepository(AlumniNoteRepository alumniNoteRepository) {
         this.alumniNoteRepository = alumniNoteRepository;
     }
+
+//    @Autowired
+//    public void setEmployerContactRepository(EmployerContactRepository employerContactRepository) {
+//        this.employerContactRepository = employerContactRepository;
+//    }
     
     public List<Alumni> getAlumniPage(Integer pageNumber) {
         PageRequest request = new PageRequest(pageNumber, PAGE_SIZE, Sort.Direction.ASC, "lastName");
@@ -56,20 +63,26 @@ public class AlumniService {
     }
 
     public Boolean saveAlumni(Alumni alumni) {
-        if(alumni.getEmployed()) {            
+        if(alumni.getEmployed() || alumni.getEmployer() != null) {            
             Employer existingEmployer = employerRepository.findByName(alumni.getEmployer().getName());
-            
-            if(existingEmployer != null) {
+            if(existingEmployer != null) {  
                 alumni.setEmployer(existingEmployer);
             }
-            
-            alumniRepository.save(alumni);
         }
         
-        alumni = alumniRepository.save(alumni);
+        alumniRepository.save(alumni);
         return true;
     }
-
+    
+    private Employer getLatestEmployer(Employer employer) {
+        if(employer == null) return null;
+        
+        Employer existingEmployer = employerRepository.findByName(employer.getName());
+        if(existingEmployer != null) return existingEmployer;
+        
+        return employer;        
+    }
+    
     public void deleteAlumniWithId(Alumni alumni) {
         if(alumni != null) alumniRepository.delete(alumni);
     }
@@ -89,6 +102,11 @@ public class AlumniService {
     public Boolean removeNote(Long noteId) {
         alumniNoteRepository.delete(noteId);
         return true;
+    }
+    
+    public List<Alumni> getAlumniByEmployer(Employer employer) {
+        if(employer == null) return new ArrayList<Alumni>();
+        return alumniRepository.findByEmployer(employer);
     }
         
 }
