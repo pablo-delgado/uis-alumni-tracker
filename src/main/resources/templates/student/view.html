@@ -2,6 +2,15 @@
 <html lang="en">
     <head data-th-replace="fragments/common :: head"></head>
     <body class="app header-fixed sidebar-fixed">
+        <style>
+            pre {
+                white-space: pre-wrap;       /* css-3 */
+                white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+                white-space: -pre-wrap;      /* Opera 4-6 */
+                white-space: -o-pre-wrap;    /* Opera 7 */
+                word-wrap: break-word;       /* Internet Explorer 5.5+ */
+            }
+        </style>
         <header data-th-replace="fragments/common :: header"></header>
 
         <div class="app-body">
@@ -21,15 +30,20 @@
                                     <div class="card-block p-1 clearfix">
                                         <i class="fa fa-graduation-cap bg-primary p-1 font-2xl mr-1 float-left"></i>
                                         <div class="h6 text-primary mb-0 mt-h">Students</div>
-                                        <div class="text-muted text-uppercase font-weight-bold font-xs">Viewing Record for [[${alumni.fullname()}]]</div>
+                                        <div class="text-muted text-uppercase font-weight-bold font-xs">Viewing Record</div>
                                     </div>
                                 </div>    
-                                
+
                                 <br/>
-                                
+
                                 <div class="container">
-                                    
+
+                                    <!-- INFO -->
                                     <div class="row">
+                                        <div class="col-12">
+                                            <h5>Student Info</h5>
+                                            <hr/>
+                                        </div>                                        
                                         <div class="col-md-4">
                                             <strong>UIN: </strong><span data-th-text="${alumni.uin}" />
                                         </div>          
@@ -49,6 +63,50 @@
                                             <span data-th-text="${alumni.email}" />
                                         </div>
                                     </div>
+
+                                    <div style="margin-bottom: 50px;">&nbsp;</div>
+                                    
+                                    <!-- EMPLOYER -->
+                                    <div class="row" data-th-if="${alumni.employer}">
+                                        <div class="col-12">
+                                            <h5>Employer</h5>
+                                            <hr/>
+                                        </div>  
+                                        <div class="col-md-2">
+                                            <strong>Employer: </strong>
+
+                                        </div>
+                                        <div class="col-md-4">
+                                            <span data-th-text="${alumni.employer.name}" /><br/>
+                                            <span data-th-text="${alumni.employer.city}" />, <span data-th-text="${alumni.employer.state}" />
+                                        </div>
+                                    </div>
+
+                                    <div style="margin-bottom: 50px;">&nbsp;</div>
+                                    
+                                    <!-- NOTES -->
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <button type="button" class="btn btn-primary btn-sm pull-right" data-toggle="modal" data-target="#notesModal">
+                                                Add Note
+                                            </button>
+                                            <h5 data-th-if="${not #lists.isEmpty(alumni.notes)}">Notes</h5>
+                                            <hr data-th-if="${not #lists.isEmpty(alumni.notes)}" />
+                                        </div> 
+                                        <div class="col" data-th-if="${not #lists.isEmpty(alumni.notes)}">
+                                            <ul class="list-unstyled" data-th-each="note : ${alumni.notes}">
+                                                <li class="media" >
+                                                    <div class="media-body">
+                                                        <span class="badge badge-primary"><i class="fa fa-calendar">&nbsp;</i> <span data-th-text="${#dates.format(note.dateCreated, 'dd-MMM-yyyy')}">Date</span></span>
+                                                        <a href="#" class="badge badge-danger pull-right" data-th-href="@{/students/{id}/note/{noteId}/delete(id=${alumni.id}, noteId=${note.id})}"> <i class="fa fa-times">&nbsp;</i> DELETE</a>                                                        
+                                                        <br/>
+                                                        <pre style="max-width: 100%;" data-th-text="${note.text}">Text</pre>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
                                     <br/>
                                     <hr/>
                                     <div class="row">
@@ -57,10 +115,10 @@
                                             &nbsp;
                                             <a href="#" data-th-href="@{/students/{id}/edit(id=${alumni.id})}" class="btn btn-sm btn-secondary"><i class="fa fa-pencil"></i> Edit</a>
                                         </div>
-                                    </div>
+                                    </div>                                    
+
                                 </div>
-                                
-                                
+
                             </div>
                         </div>
                     </div>
@@ -69,6 +127,46 @@
             </main>
         </div>
 
+        <!-- Notes Modal Window -->
+        <div class="modal" id="notesModal">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Notes</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+                        <form id="noteForm" method="post" data-th-action="@{/students/{id}/note/add(id=${alumni.id})}">                            
+                            <input type="hidden" id="alumniId" name="alumniId" data-th-value="${alumni.id}" />
+                            <textarea name="note" class="form-control" rows="20"></textarea>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" id="btn-saveNote">Save</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- Notes Modal Window End -->
+
         <footer data-th-replace="fragments/common :: footer"></footer>
+
+        <!-- custom scripts -->
+        <script>
+            $(document).ready(function () {
+                $('#btn-saveNote').on('click', function () {
+                    $('#noteForm').submit();
+                });
+
+                $('#notesModal').on('shown.bs.modal', function () {
+                    $('#notesModal textarea').focus()
+                });
+            });
+        </script>
     </body>
 </html>

@@ -1,7 +1,9 @@
 package edu.uis.app.service;
 
 import edu.uis.app.data.model.Alumni;
+import edu.uis.app.data.model.AlumniNote;
 import edu.uis.app.data.model.Employer;
+import edu.uis.app.data.repository.AlumniNoteRepository;
 import edu.uis.app.data.repository.AlumniRepository;
 import edu.uis.app.data.repository.EmployerRepository;
 import java.util.ArrayList;
@@ -19,6 +21,7 @@ import org.springframework.stereotype.Service;
 public class AlumniService {
     private static final Integer PAGE_SIZE = 20;
     private AlumniRepository alumniRepository;
+    private AlumniNoteRepository alumniNoteRepository;
     private EmployerRepository employerRepository;
 
     @Autowired
@@ -29,6 +32,11 @@ public class AlumniService {
     @Autowired
     public void setEmployerRepository(EmployerRepository employerRepository) {
         this.employerRepository = employerRepository;
+    }
+
+    @Autowired
+    public void setAlumniNoteRepository(AlumniNoteRepository alumniNoteRepository) {
+        this.alumniNoteRepository = alumniNoteRepository;
     }
     
     public List<Alumni> getAlumniPage(Integer pageNumber) {
@@ -64,6 +72,23 @@ public class AlumniService {
 
     public void deleteAlumniWithId(Alumni alumni) {
         if(alumni != null) alumniRepository.delete(alumni);
+    }
+
+    public Boolean addNote(Long alumniId, String note) {
+        if(alumniId == null || note == null) return false;
+        
+        Alumni alumni = alumniRepository.findOne(alumniId);
+        if(alumni == null) return false;
+        
+        alumni.addNote(new AlumniNote(note));        
+        alumniRepository.save(alumni);
+        
+        return true;
+    }
+
+    public Boolean removeNote(Long noteId) {
+        alumniNoteRepository.delete(noteId);
+        return true;
     }
         
 }

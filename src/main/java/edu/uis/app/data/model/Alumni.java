@@ -17,7 +17,6 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import jdk.nashorn.internal.objects.annotations.Setter;
 
 /**
  *
@@ -59,6 +58,7 @@ public class Alumni implements Serializable {
     private Employer employer;
     
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "alumni")
+//    @OneToMany(cascade = CascadeType.ALL)
     private List<AlumniNote> notes;
 
     public Alumni() {
@@ -174,6 +174,7 @@ public class Alumni implements Serializable {
     public void addNote(AlumniNote note) {
         if(this.notes == null) 
             this.notes = new ArrayList<>();
+        note.setAlumni(this);
         this.notes.add(note);
     }
     

@@ -87,9 +87,33 @@ public class StudentController {
         return "redirect:/students";
     }
     
+    @RequestMapping(value = "/{id}/note/add", method = RequestMethod.POST)
+    public String addNote(@PathVariable("id") Long alumniId, @RequestParam("note") String note) {
+        if(note.isEmpty())
+            System.out.println("report error via request attribute and skip: Warning: emptry string will not be saved.");
+        else 
+            if(service.addNote(alumniId, note) == false) 
+                System.out.println("Report errors via request attributes: Error ocurrred Unable to save note");
+            
+            
+        return "redirect:/students/" + alumniId + "/view";
+    }
+    
+    @RequestMapping(value = "/{id}/note/{noteId}/delete")
+    public String deleteNote(@PathVariable("id") Long alumniId, @PathVariable("noteId") Long noteId) {
+        if(alumniId == null || noteId == null)
+            System.out.println("Report Error");
+        else
+            if(service.removeNote(noteId) == false)
+                System.out.println("Report error");
+        
+        return "redirect:/students/" + alumniId + "/view";
+    }
+    
     @RequestMapping(value = "/graduates", method = RequestMethod.GET)
     public String graduates(Model model, @RequestParam(defaultValue = "0") Integer pageNumber) {
         model.addAttribute("alumni", service.getGraduateAlumniPage(pageNumber));
         return "student/index";
     }
+    
 }

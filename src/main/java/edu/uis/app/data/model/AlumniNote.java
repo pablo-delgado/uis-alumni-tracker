@@ -3,6 +3,7 @@ package edu.uis.app.data.model;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,13 +11,13 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 /**
- *
- * @author Pablo Delgado <pdelg2@uis.edu>
+ * @author Pablo Delgado
  */
 @Entity
 @Table(name = "uis_alumni_note")
@@ -29,10 +30,10 @@ public class AlumniNote implements Serializable, Comparable<AlumniNote> {
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateCreated;
 
-    @Lob
+    @Column(columnDefinition = "TEXT")
     private String text;
     
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name="alumni")
     private Alumni alumni;
 
@@ -42,6 +43,7 @@ public class AlumniNote implements Serializable, Comparable<AlumniNote> {
     }
 
     public AlumniNote(String text) {
+        this.dateCreated = new Date();
         this.text = text;
     }
 
