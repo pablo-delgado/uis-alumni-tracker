@@ -2,6 +2,7 @@ package edu.uis.app.controller;
 
 import edu.uis.app.data.model.Alumni;
 import edu.uis.app.data.model.Employer;
+import edu.uis.app.service.AlumniService;
 import edu.uis.app.service.EmployerService;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -26,10 +27,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class EmployerController {
     
     private EmployerService service;
+    
+    private AlumniService alumniService;
 
     @Autowired
     public void setService(EmployerService service) {
         this.service = service;
+    }
+
+    @Autowired
+    public void setAlumniService(AlumniService alumniService) {
+        this.alumniService = alumniService;
     }
     
     @InitBinder
@@ -59,6 +67,13 @@ public class EmployerController {
         return "employer/form";
     }
     
+    @RequestMapping(value = "/assignNew", method = RequestMethod.GET)
+    public String createAndAssign(Model model, @RequestParam(value = "alumni") Alumni alumni) {
+        model.addAttribute("employer", new Employer());
+        model.addAttribute("alumni", alumni);
+        return "employer/form";
+    }
+    
     @RequestMapping(value = "/{id}/edit", method = RequestMethod.GET)
     public String edit(@PathVariable("id") Employer employer, Model model) {
         if(employer == null || employer.getId() == null) return "redirect:/employer";
@@ -66,24 +81,45 @@ public class EmployerController {
         return "employer/form";
     }
     
-    @RequestMapping(value = {"/new", "/{id}/edit"}, method = RequestMethod.POST)
-    public String save(Employer employer, BindingResult bindingResult, @ModelAttribute("afterAction") String afterAction, Model model) {
+    @RequestMapping(value = {"/new", "/assignNew", "/{id}/edit"}, method = RequestMethod.POST)
+    public String save(Employer employer, BindingResult bindingResult, 
+                       @ModelAttribute("afterAction") String afterAction, 
+                       @ModelAttribute("alumni") Alumni alumni, Model model) 
+    {
+        System.err.println("ALUMNI ID = " + alumni.getId());
         if(bindingResult.hasErrors()) {
             model.addAttribute("employer", employer);
             return "employer/form";
         }
         
-        service.saveEmployer(employer);
+        service.saveEmployer(employer);   
+        
         if(afterAction.equals("close"))
             return "redirect:/employers";
+        
+        if(afterAction.equals("assign")) {
+            alumniService.addEmployer(alumni, employer);
+            return "redirect:/students/" + alumni.getId() + "/view";
+        }
         
         return "redirect:/employers/".concat(employer.getId().toString()).concat("/view");
     }
     
     @RequestMapping(value = "/{id}/delete", method = RequestMethod.GET)
     public String delete(@PathVariable("id") Employer employer) {
-        service.deleteEmployerWithId(employer);
+        service.deleteEmployer(employer);
         return "redirect:/employers";
+    }
+    
+    @RequestMapping(value = "/search")
+    public String search(@RequestParam(value = "q", required = false) String queryString, @RequestParam("alumni") Alumni alumni, Model model) {
+        model.addAttribute("alumni", alumni);
+        
+        if(queryString == null || queryString.isEmpty())
+            return "employer/search";
+        
+        model.addAttribute("results", service.findEmployerContaining(queryString));
+        return "employer/search";
     }
     
 }

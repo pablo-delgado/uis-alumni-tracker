@@ -87,6 +87,20 @@ public class StudentController {
         return "redirect:/students";
     }
     
+    @RequestMapping(value = "/{id}/employer/{eid}/add")
+    public String addEmployer(@PathVariable("id") Alumni alumni, @PathVariable("eid") Employer employer) {
+        service.addEmployer(alumni, employer);
+        return "redirect:/students/" + alumni.getId() + "/view";
+    }
+    
+    // edit employer
+    
+    @RequestMapping(value = "/{id}/employer/remove")
+    public String removeEmployer(@PathVariable("id") Alumni alumni) {
+        service.removeEmployer(alumni);
+        return "redirect:/students/" + alumni.getId() + "/view";
+    }
+    
     @RequestMapping(value = "/{id}/note/add", method = RequestMethod.POST)
     public String addNote(@PathVariable("id") Long alumniId, @RequestParam("note") String note) {
         if(note.isEmpty())

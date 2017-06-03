@@ -67,16 +67,22 @@
                                     <div style="margin-bottom: 50px;">&nbsp;</div>
                                     
                                     <!-- EMPLOYER -->
-                                    <div class="row" data-th-if="${alumni.employer}">
+                                    <div class="row">
                                         <div class="col-12">
-                                            <h5>Employer</h5>
-                                            <hr/>
-                                        </div>  
-                                        <div class="col-md-2">
-                                            <strong>Employer: </strong>
-
+                                            <a href="#" class="btn btn-primary btn-sm pull-right" data-th-if="${alumni.employer == null}" data-th-href="@{/employers/search?alumni={id}(id=${alumni.id})}">
+                                                Assign Employer
+                                            </a>                                                                                        
+                                            <a href="#" class="btn btn-danger btn-sm pull-right" style="margin-left: 10px;" data-th-if="${alumni.employer}" data-th-href="@{/students/{id}/employer/remove(id=${alumni.id})}">
+                                                Remove Employer
+                                            </a>
+                                            &nbsp;                                            
+                                            <a href="#" class="btn btn-primary btn-sm pull-right" data-th-if="${alumni.employer}" data-th-href="@{/employers/search?alumni={id}(id=${alumni.id})}">
+                                                Change Employer
+                                            </a>
+                                            <h5 data-th-if="${alumni.employer}">Employer</h5>
+                                            <hr data-th-if="${alumni.employer}"/>
                                         </div>
-                                        <div class="col-md-4">
+                                        <div class="col-md-4" data-th-if="${alumni.employer}">
                                             <a href="#" data-th-href="@{/employers/{id}/view(id=${alumni.employer.id})}" data-th-text="${alumni.employer.name}">Employer</a><br/>                                            
                                             <span data-th-text="${alumni.employer.city}" />, <span data-th-text="${alumni.employer.state}" />
                                         </div>
@@ -153,7 +159,7 @@
             </div>
         </div>
         <!-- Notes Modal Window End -->
-
+        
         <footer data-th-replace="fragments/common :: footer"></footer>
 
         <!-- custom scripts -->

@@ -30,6 +30,8 @@
                                     <form name="alumni" method="post" data-th-object="${employer}">
                                         <input type="hidden" data-th-if="*{id}" data-th-field="*{id}" />
                                         
+                                        <input type="hidden" name="alumni" data-th-if="${alumni}" data-th-value="${alumni.id}" />
+                                        
                                         <div class="row">
                                             <div class="form-group col-md-12">
                                                 <label for="name" class="col-form-label">Name</label>
@@ -48,9 +50,10 @@
                                             </div>
                                         </div>
 
-                                        <a href="#" data-th-href="@{/employers}" class="btn btn-secondary pull-right m-l" style="margin-left: 10px;">Close</a>
-                                        <button type="submit" name="afterAction" value="close" class="btn btn-primary pull-right" style="margin-left: 10px;">Save and Close</button>
-                                        <button type="submit" name="afterAction" value="continue" class="btn btn-primary pull-right">Save</button>
+                                        <a data-th-if="${alumni == null}" data-th-href="@{/employers}" href="#" class="btn btn-secondary pull-right m-l" style="margin-left: 10px;">Close</a>
+                                        <button data-th-if="${alumni == null}" type="submit" name="afterAction" value="close" class="btn btn-primary pull-right" style="margin-left: 10px;">Save and Close</button>
+                                        <button data-th-if="${alumni == null}" type="submit" name="afterAction" value="continue" class="btn btn-primary pull-right">Save</button>
+                                        <button data-th-if="${alumni}" type="submit" name="afterAction" value="assign" class="btn btn-primary pull-right">Assign</button>
                                     </form>
                                 </div>
                                 

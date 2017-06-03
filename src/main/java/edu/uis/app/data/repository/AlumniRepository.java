@@ -10,8 +10,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
- *
- * @author Pablo Delgado <pdelg2@uis.edu>
+ * @author Pablo Delgado
  */
 @Repository
 public interface AlumniRepository extends JpaRepository<Alumni, Long> {

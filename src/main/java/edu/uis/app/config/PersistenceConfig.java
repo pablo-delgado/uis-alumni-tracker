@@ -14,7 +14,7 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
- * @author Pablo Delgado <pdelg2@uis.edu>
+ * @author Pablo Delgado
  */
 @Configuration
 @EnableJpaRepositories(basePackages = {
@@ -91,7 +91,7 @@ public class PersistenceConfig {
         jpaProperties.put("hibernate.cglib.use_reflection_optimizer", 
                 env.getRequiredProperty("hibernate.cglib.use_reflection_optimizer")
         );
- 
+         
         entityManagerFactoryBean.setJpaProperties(jpaProperties);
  
         return entityManagerFactoryBean;

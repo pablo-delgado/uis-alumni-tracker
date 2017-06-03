@@ -23,8 +23,6 @@ public class AlumniService {
     private static final Integer PAGE_SIZE = 20;
     private AlumniRepository alumniRepository;
     private AlumniNoteRepository alumniNoteRepository;
-    private EmployerRepository employerRepository;
-//    private EmployerContactRepository employerContactRepository;
 
     @Autowired
     public void setAlumniRepository(AlumniRepository alumniRepository) {
@@ -32,20 +30,10 @@ public class AlumniService {
     }
 
     @Autowired
-    public void setEmployerRepository(EmployerRepository employerRepository) {
-        this.employerRepository = employerRepository;
-    }
-
-    @Autowired
     public void setAlumniNoteRepository(AlumniNoteRepository alumniNoteRepository) {
         this.alumniNoteRepository = alumniNoteRepository;
     }
 
-//    @Autowired
-//    public void setEmployerContactRepository(EmployerContactRepository employerContactRepository) {
-//        this.employerContactRepository = employerContactRepository;
-//    }
-    
     public List<Alumni> getAlumniPage(Integer pageNumber) {
         PageRequest request = new PageRequest(pageNumber, PAGE_SIZE, Sort.Direction.ASC, "lastName");
         Page<Alumni> result = alumniRepository.findAll(request);
@@ -63,26 +51,17 @@ public class AlumniService {
     }
 
     public Boolean saveAlumni(Alumni alumni) {
-        if(alumni.getEmployed() || alumni.getEmployer() != null) {            
-            Employer existingEmployer = employerRepository.findByName(alumni.getEmployer().getName());
-            if(existingEmployer != null) {  
-                alumni.setEmployer(existingEmployer);
-            }
+        Alumni existing = alumniRepository.findOne(alumni.getId());
+        if(existing.getEmployer() != null) {
+            alumni.setEmployer(existing.getEmployer());
+            alumni.setEmployed(Boolean.TRUE);
         }
         
         alumniRepository.save(alumni);
+        
         return true;
     }
-    
-    private Employer getLatestEmployer(Employer employer) {
-        if(employer == null) return null;
         
-        Employer existingEmployer = employerRepository.findByName(employer.getName());
-        if(existingEmployer != null) return existingEmployer;
-        
-        return employer;        
-    }
-    
     public void deleteAlumniWithId(Alumni alumni) {
         if(alumni != null) alumniRepository.delete(alumni);
     }
@@ -108,5 +87,17 @@ public class AlumniService {
         if(employer == null) return new ArrayList<Alumni>();
         return alumniRepository.findByEmployer(employer);
     }
-        
+    
+    public void addEmployer(Alumni alumni, Employer employer) {
+        alumni.setEmployer(employer);
+        alumni.setEmployed(Boolean.TRUE);
+        alumniRepository.save(alumni);
+    }
+
+    public void removeEmployer(Alumni alumni) {   
+        alumni.setEmployer(null);
+        alumni.setEmployed(Boolean.FALSE);
+        alumniRepository.save(alumni);
+    }
+    
 }
