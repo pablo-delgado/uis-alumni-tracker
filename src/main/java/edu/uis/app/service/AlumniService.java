@@ -51,10 +51,12 @@ public class AlumniService {
     }
 
     public Boolean saveAlumni(Alumni alumni) {
-        Alumni existing = alumniRepository.findOne(alumni.getId());
-        if(existing.getEmployer() != null) {
-            alumni.setEmployer(existing.getEmployer());
-            alumni.setEmployed(Boolean.TRUE);
+        if(alumni.getId() != null) {
+            Alumni existing = alumniRepository.findOne(alumni.getId());
+            if(existing.getEmployer() != null) {
+                alumni.setEmployer(existing.getEmployer());
+                alumni.setEmployed(Boolean.TRUE);
+            }
         }
         
         alumniRepository.save(alumni);

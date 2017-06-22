@@ -9,7 +9,7 @@
     <packaging>war</packaging>
 
     <name>alumni-tracker</name>
-    <description>Demo project for Spring Boot</description>
+    <description>University of Illinois Springfield Alumni Tracker</description>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
